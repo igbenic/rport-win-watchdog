@@ -101,7 +101,7 @@ function Register-Task {
         -Execute "powershell" `
         -Argument "-ExecutionPolicy bypass -file $( $taskFile ) -Threshold $Threshold" `
         -WorkingDirectory $dir
-    $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Minutes $IntervallMin)
+    $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Minutes $IntervallMin) -RepetitionDuration (New-TimeSpan New-TimeSpan -Hours 23 -Minutes 55)
     $principal = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
     $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries
     $task = New-ScheduledTask `
